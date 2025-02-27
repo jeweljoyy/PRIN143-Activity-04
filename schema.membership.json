@@ -15,117 +15,37 @@
             "maxLength": 20 },
         "middleName": { "type" : ["string", "null"] },
 
-        "birthdate" : "",
+        "birthdate" : {
+            "month": {"type": "string",
+                "minLength": 3,
+                "maxLength": 10 },
+            "date": {"type": "integer",
+                "exclusiveMinimun": 1,
+                "exclusiveMaximum": 12},
+            "year": {"type": "integer",
+                "exclusiveMinimum": 1985,
+                "exclusiveMaximum": 2025}
+                    },
 
-      "name": {
-        "$ref": "#/$defs/name"
-      },
-      "yearLevel": {
-        "type": "integer",
-        "exclusiveMinimum": 0,
-        "exclusiveMaximum": 7
-      },
-      "campus": {
-        "enum": [
-          "Malolos",
-          "Makati",
-          "Mendiola"
-        ]
-      },
-      "memberships": {
-        "type": "array",
-        "items": {
-          "enum": [
-            "Math Club",
-            "Science Club",
-            "English Club",
-            "Sports Club"
-          ]
-        },
-        "minItems": 2,
-        "maxItems": 3,
-        "uniqueItems": true
-      },
-      "subjects": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "subjectCode": {
-              "type": "string"
-            },
-            "grade": {
-              "type": "number",
-              "multipleOf": 0.25,
-              "minimum": 1.00,
-              "maximum": 5.00
-            }
-          }
-        }
-      },
-      "contactDetails": {
-        "type": "object",
-        "properties": {
-          "emailAddress": {
-            "pattern": "^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$"
-          }
-        },
-        "required": [
-          "emailAddress"
-        ]
-      },
-      "yearGraduated": {
-        "type": "integer"
-      }
-    },
-    "dependentSchemas": {
-      "yearGraduated": {
-        "properties": {
-          "alumniId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "alumniId"
-        ]
-      }
-    },
-    "$defs": {
-      "name": {
-        "type": "object",
-        "description": "Person name",
-        "properties": {
-          "firstName": {
+        "gender": {"enum" : ["M","F"] },
+
+        "mobileNumber": {"type": "integer",
+            "maxLength": 11 },
+        
+        "emailAddress":{
+            "pattern": "^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$"},
+                    
+        "interest": {
+            "type": "array",
+            "items": {
+                "type": "string"},
+            "minItems": 1,
+            "maxItems": 10},
+
+        
+        "platforms":{
             "type": "string",
-            "minLength": 2,
-            "maxLength": 15
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": true,
-        "minProperties": 2,
-        "maxProperties": 3,
-        "dependentRequired": {
-          "firstName": [
-            "lastName"
-          ],
-          "lastName": [
-            "firstName"
-          ]
+            "enum" : ["PC","Playstation","XBOX"] 
         }
-      }
-    },
-    "required": [
-      "id",
-      "name",
-      "campus",
-      "memberships",
-      "subjects",
-      "contactDetails"
-    ]
-  }
+    }
+}
